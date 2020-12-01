@@ -114,7 +114,7 @@ async def on_message(message):
 		return
 
 	if message.content.startswith(prefix):
-		if (argslist[0] == "sleep"):
+		if (argslist[0] == "sleep" or argslist[0] == "sl"):
 			if not sleeping in message.author.roles:
 				await message.channel.send("you begin to fall asleep")
 				await asyncio.sleep(5)
@@ -129,8 +129,8 @@ async def on_message(message):
 				await message.author.remove_roles(sleeping, reason="sleeping")
 
 	if hamon in message.author.roles or standAndHamon in message.author.roles:
-		if argslist[0] == "hamon":
-			if argslist[1] == "overdrive":
+		if (argslist[0] == "hamon" or argslist[0] == "h"):
+			if (argslist[1] == "overdrive" or argslist[1] == "o"):
 				if message.mentions == []:
 					await message.channel.send("you need to ping a user to attack")
 					return
@@ -142,14 +142,14 @@ async def on_message(message):
 					attacked = message.mentions[0]
 				dmg = 1
 				await health.hamonattack(attacker, attacked, dmg, healthroles, message)
-			if argslist[1] == "heal":
+			if (argslist[1] == "heal" or argslist[1] == "h"):
 				healed = message.author
 				points = random.randrange(0, 2)
 				await health.heal(healed, points, healthroles)
 
 	if standuser in message.author.roles or standAndHamon in message.author.roles:
-		if (argslist[0] == "stand"):
-			if (argslist[1] == "attack"):
+		if (argslist[0] == "stand" or argslist[0] == "s"):
+			if (argslist[1] == "attack" or argslist[1] == "a"):
 				if message.mentions == []:
 					await message.channel.send("you need to ping a user to attack")
 					return

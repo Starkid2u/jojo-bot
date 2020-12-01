@@ -102,46 +102,45 @@ async def hamonattack(attacker, attacked, dmg, healthroles, message):
 		dmg = dmg*2
 	for x in range(dmg):
 		if (healthroles[10] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[10],reason="attacked")
 			await attacked.add_roles(healthroles[9],reason="attacked")
 		elif (healthroles[9] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[9],reason="attacked")
 			await attacked.add_roles(healthroles[8],reason="attacked")
 		elif (healthroles[8] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[8],reason="attacked")
 			await attacked.add_roles(healthroles[7],reason="attacked")
 		elif (healthroles[7] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[7],reason="attacked")
 			await attacked.add_roles(healthroles[6],reason="attacked")
 		elif (healthroles[6] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[6],reason="attacked")
 			await attacked.add_roles(healthroles[5],reason="attacked")
 		elif (healthroles[5] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[5],reason="attacked")
 			await attacked.add_roles(healthroles[4],reason="attacked")
 		elif (healthroles[4] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[4],reason="attacked")
 			await attacked.add_roles(healthroles[3],reason="attacked")
 		elif (healthroles[3] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[3],reason="attacked")
 			await attacked.add_roles(healthroles[2],reason="attacked")
 		elif (healthroles[2] in attacked.roles):
-			await message.channel.send(f"{attacker.name} attacked {attacked.name} with a stand for {dmg} health!")
+			await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 			await attacked.remove_roles(healthroles[2],reason="attacked")
 			await attacked.add_roles(healthroles[1],reason="attacked")
 		elif (healthroles[1] in attacked.roles):
 			await message.channel.send(f"{attacker.name} killed {attacked.name} with hamon")
 			killed = attacked
 			await kill(killed, healthroles)
-	await message.channel.send(f"{attacker.name} attacked {attacked.name} with hamon for {dmg} health!")
 
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def heal(healed, points, healthroles):
