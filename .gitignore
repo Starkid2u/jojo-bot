@@ -1,2 +1,5 @@
 tokenfile
+run.bat
+run.sh
+.vscode
 __pycache__
