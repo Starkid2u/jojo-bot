@@ -22,9 +22,10 @@ async def standattack(attacker, attacked, dmg, healthroles, message):
 	hamonhealcooldown = discord.utils.get(message.guild.roles, id = 749768438418898975)
 	enraged = discord.utils.get(message.guild.roles, id = 749824364618186844)
 	enraged_victim = discord.utils.get(message.guild.roles, id = 749824617648226326)
+	sleeping = discord.utils.get(message.guild.roles, id = 741552665892356147)
 
 	
-	if healthroles[0] in message.author.roles or healthroles[0] in message.mentions[0].roles or scared in message.author.roles:
+	if healthroles[0] in message.author.roles or healthroles[0] in message.mentions[0].roles or scared in message.author.roles or sleeping in message.author.roles:
 		return
 	if stand in attacked.roles:
 		await message.channel.send("attack the user, not the stand")
@@ -88,9 +89,10 @@ async def hamonattack(attacker, attacked, dmg, healthroles, message):
 	hamonhealcooldown = discord.utils.get(message.guild.roles, id = 749768438418898975)
 	enraged = discord.utils.get(message.guild.roles, id = 749824364618186844)
 	enraged_victim = discord.utils.get(message.guild.roles, id = 749824617648226326)
+	sleeping = discord.utils.get(message.guild.roles, id = 741552665892356147)
 
 	
-	if healthroles[0] in message.author.roles or healthroles[0] in message.mentions[0].roles or scared in message.author.roles:
+	if healthroles[0] in message.author.roles or healthroles[0] in message.mentions[0].roles or scared in message.author.roles or sleeping in message.author.roles:
 		return
 	if stand in attacked.roles:
 		await message.channel.send("attack the user, not the stand")

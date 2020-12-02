@@ -34,6 +34,23 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
+	helpmessage = discord.Embed(title="Help", description="**help stands** - get help on stands\n**help hamon** - get help on hamon\n**help combat** - get help on combat\n**help commands** - get help on commands like !sleep")
+	helpmessage.set_footer(text=f"requested by {message.author.name}", icon_url=f"https://cdn.discordapp.com/avatars/{message.author.id}/{message.author.avatar}.png")
+
+	standhelpmessage = discord.Embed(title="Help stands", description="**stand attack** - ping a user to attack them with your stand")
+	standhelpmessage.set_footer(text=f"requested by {message.author.name}", icon_url=f"https://cdn.discordapp.com/avatars/{message.author.id}/{message.author.avatar}.png")
+
+	hamonhelpmessage = discord.Embed(title="Help hamon", description="**hamon overdrive** - ping a user to attack them with hamon\n**hamon heal** - concentrate your energies within your body and heal and random 0 to 2 points of damage")
+	hamonhelpmessage.set_footer(text=f"requested by {message.author.name}", icon_url=f"https://cdn.discordapp.com/avatars/{message.author.id}/{message.author.avatar}.png")
+
+	combathelp = discord.Embed(title="Combat", description="- every user has 10 points of health\n- basic stand attacks deal 1 point of damage\n- hamon attacks deal 1 damage to normal players and 3 to vampires (not added yet)\n")
+	combathelp.set_footer(text=f"requested by {message.author.name}", icon_url=f"https://cdn.discordapp.com/avatars/{message.author.id}/{message.author.avatar}.png")
+
+	commandshelp = discord.Embed(title="Basic Commands", description="**sleep** - take a nap")
+	commandshelp.set_footer(text=f"requested by {message.author.name}", icon_url=f"https://cdn.discordapp.com/avatars/{message.author.id}/{message.author.avatar}.png")
+
+
 	healthroles = [discord.utils.get(message.guild.roles, id = 714535509279637525), discord.utils.get(message.guild.roles, id = 714535481928319016), discord.utils.get(message.guild.roles, id = 714535460860330066), discord.utils.get(message.guild.roles, id = 714535436143558788), discord.utils.get(message.guild.roles, id = 714535405843775518), discord.utils.get(message.guild.roles, id = 714535379675644054), discord.utils.get(message.guild.roles, id = 714535348046266449), discord.utils.get(message.guild.roles, id = 714535324759621712), discord.utils.get(message.guild.roles, id = 714535298729640047), discord.utils.get(message.guild.roles, id = 714535185273847871), discord.utils.get(message.guild.roles, id = 714534974916919349)]
 	sleeping = discord.utils.get(message.guild.roles, id = 741552665892356147)
 	hamon = discord.utils.get(message.guild.roles, id = 713208239764013097)
@@ -127,6 +144,19 @@ async def on_message(message):
 				await asyncio.sleep(5)
 				await message.channel.send("you wake up")
 				await message.author.remove_roles(sleeping, reason="sleeping")
+		elif (argslist[0] == "help"):
+			if (len(argslist) < 2):
+				await message.channel.send(embed=helpmessage)
+			elif (argslist[1] == "stands"):
+				await message.channel.send(embed=standhelpmessage)
+			elif (argslist[1] == "hamon"):
+				await message.channel.send(embed=hamonhelpmessage)
+			elif (argslist[1] == "combat"):
+				await message.channel.send(embed=combathelp)
+			elif (argslist[1] == "commands"):
+				await message.channel.send(embed=commandshelp)
+			else:
+				await message.channel.send(embed=helpmessage)
 
 	if hamon in message.author.roles or standAndHamon in message.author.roles:
 		if (argslist[0] == "hamon" or argslist[0] == "h"):
