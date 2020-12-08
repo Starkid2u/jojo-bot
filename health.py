@@ -5,12 +5,6 @@ import json
 from discord.ext import commands
 
 
-async def kill(killed, healthroles):
-	await killed.remove_roles(healthroles[3], reason="killed")
-	await killed.add_roles(healthroles[4], reason="killed")
-	await asyncio.sleep(3600)
-	await killed.remove_roles(healthroles[4], reason="revived")
-	await killed.add_roles(healthroles[3], reason="revived")
 
 with open("health.json","rt") as rawhealth:
 	health = json.loads(rawhealth.read())
@@ -83,9 +77,18 @@ async def changehealth(user, add, subtract, healthroles):
 	healthfile.write(json.dumps(health))
 	healthfile.close()
 
+async def kill(killed, healthroles):
+	await killed.remove_roles(healthroles[3], reason="killed")
+	await killed.add_roles(healthroles[4], reason="killed")
+	await asyncio.sleep(3600)
+	await killed.remove_roles(healthroles[4], reason="revived")
+	await killed.add_roles(healthroles[3], reason="revived")
+	health[str(killed.id)] = 10
+
 async def sleepheal(healed, healthroles, sleeping):
-	id = healed.id
-	
+
+	id = str(healed.id)
+
 	while True:
 		await asyncio.sleep(300)
 		if health[id] >= 100:
