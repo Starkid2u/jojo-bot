@@ -47,11 +47,11 @@ async def on_message(message):
 	combathelp = discord.Embed(title="Combat", description="- every user has 10 points of health\n- basic stand attacks deal 1 point of damage\n- hamon attacks deal 1 damage to normal players and 3 to vampires (not added yet)\n")
 	combathelp.set_footer(text=f"requested by {message.author.name}", icon_url=f"https://cdn.discordapp.com/avatars/{message.author.id}/{message.author.avatar}.png")
 
-	commandshelp = discord.Embed(title="Basic Commands", description="**sleep** - take a nap")
+	commandshelp = discord.Embed(title="Basic Commands", description="**sleep** - take a nap, do command again in the dreamland channel to wake up")
 	commandshelp.set_footer(text=f"requested by {message.author.name}", icon_url=f"https://cdn.discordapp.com/avatars/{message.author.id}/{message.author.avatar}.png")
 
 
-	healthroles = [discord.utils.get(message.guild.roles, id = 714535509279637525), discord.utils.get(message.guild.roles, id = 714535481928319016), discord.utils.get(message.guild.roles, id = 714535460860330066), discord.utils.get(message.guild.roles, id = 714535436143558788), discord.utils.get(message.guild.roles, id = 714535405843775518), discord.utils.get(message.guild.roles, id = 714535379675644054), discord.utils.get(message.guild.roles, id = 714535348046266449), discord.utils.get(message.guild.roles, id = 714535324759621712), discord.utils.get(message.guild.roles, id = 714535298729640047), discord.utils.get(message.guild.roles, id = 714535185273847871), discord.utils.get(message.guild.roles, id = 714534974916919349)]
+	healthroles = [discord.utils.get(message.guild.roles, id = 714534974916919349), discord.utils.get(message.guild.roles, id = 714535185273847871), discord.utils.get(message.guild.roles, id = 714535298729640047), discord.utils.get(message.guild.roles, id = 785552558738898965), discord.utils.get(message.guild.roles, id = 714535509279637525)]
 	sleeping = discord.utils.get(message.guild.roles, id = 741552665892356147)
 	hamon = discord.utils.get(message.guild.roles, id = 713208239764013097)
 	standuser = discord.utils.get(message.guild.roles, id = 712718459431157888)
@@ -164,32 +164,27 @@ async def on_message(message):
 				if message.mentions == []:
 					await message.channel.send("you need to ping a user to attack")
 					return
-				if rof_armour in message.mentions[0].roles:
-					attacker = message.mentions[0]
-					attacked = message.author
-				else:
-					attacker = message.author
-					attacked = message.mentions[0]
-				dmg = 1
-				await health.hamonattack(attacker, attacked, dmg, healthroles, message)
+				attacker = message.author
+				attacked = message.mentions[0]
+				dmg = random.randrange(2, 10)
+				await health.changehealth(user=attacked, add=0, subtract=dmg, healthroles=healthroles)
+				await message.channel.send(f"{attacker} attacked {attacked} using hamon and delt {dmg} damage!")
 			if (argslist[1] == "heal" or argslist[1] == "h"):
 				healed = message.author
-				points = random.randrange(0, 2)
-				await health.heal(healed, points, healthroles)
+				points = random.randrange(2, 10)
+				await health.changehealth(user=healed, add=points, subtract=0, healthroles=healthroles)
 
 	if standuser in message.author.roles or standAndHamon in message.author.roles:
 		if (argslist[0] == "stand" or argslist[0] == "s"):
 			if (argslist[1] == "attack" or argslist[1] == "a"):
+				dmg = random.randrange(5, 15)
 				if message.mentions == []:
 					await message.channel.send("you need to ping a user to attack")
 					return
-				if rof_armour in message.mentions[0].roles:
-					attacker = message.mentions[0]
-					attacked = message.author
-				else:
-					attacker = message.author
-					attacked = message.mentions[0]
-				dmg = 1
-				await health.standattack(attacker, attacked, dmg, healthroles, message)
+				attacker = message.author
+				attacked = message.mentions[0]
+				await health.changehealth(user=attacked, add=0, subtract=dmg, healthroles=healthroles)
+				await message.channel.send(f"{attacker} attacked {attacked} using their stand and delt {dmg} damage!")
+
 
 client.run(token)
