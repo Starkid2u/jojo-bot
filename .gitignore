@@ -1,5 +1,5 @@
 tokenfile
-run.bat
-run.sh
 .vscode
 __pycache__
+arrows.json
+health.json
